@@ -25,15 +25,20 @@ typedef struct GrapeLogEvent {
     void* user_data;      // Opcional para backends avançados
 } GrapeLogEvent;
 
+// Move defines category to grape_system_log_h after adding new system
+// backends
 /* ===== CATEGORY ===== */
 #define GRAPE_LOG_RENDER ((GrapeLogCategory)(1u << 0))
 #define GRAPE_LOG_AUDIO ((GrapeLogCategory)(1u << 1))
 #define GRAPE_LOG_PHYSICS ((GrapeLogCategory)(1u << 2))
 #define GRAPE_LOG_ECS ((GrapeLogCategory)(1u << 3))
 #define GRAPE_LOG_IO ((GrapeLogCategory)(1u << 4))
+#define GRAPE_LOG_GENERAL ((GrapeLogCategory)(1u << 5))
 
+// Use just on function grape_log_init()
+#define GRAPE_LOG_NONE ((GrapeLogCategory)0)
 #define GRAPE_LOG_ALL                                                     \
-    GRAPE_LOG_RENDER | GRAPE_LOG_AUDIO | GRAPE_LOG_PHYSICS |              \
-        GRAPE_LOG_ECS | GRAPE_LOG_IO
+    (GRAPE_LOG_RENDER | GRAPE_LOG_AUDIO | GRAPE_LOG_PHYSICS |             \
+        GRAPE_LOG_ECS | GRAPE_LOG_IO | GRAPE_LOG_GENERAL)
 
 #endif /* GRAPE_SYSTEM_LOG_TYPES_H */
