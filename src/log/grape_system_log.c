@@ -18,6 +18,7 @@ typedef struct GrapeLoggerState {
     GrapeLogCategory category_mask;
 } GrapeLoggerState;
 
+// não é thread-safe
 static GrapeLoggerState g_logger;
 
 /* ===== DISPATCH ===== */
