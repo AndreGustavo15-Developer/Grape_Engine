@@ -1,8 +1,12 @@
 #include "grape_system_log_internal.h"
-#include <time.h>
 #include <stdarg.h>
 #include <stdio.h>
-#include <string.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <time.h>
+#endif
 
 #define GRAPE_LOGGER_MAX_BACKENDS 16
 
@@ -14,6 +18,7 @@ typedef struct Backend {
 
 /* ===== LOGGER STATE ===== */
 typedef struct GrapeLoggerState {
+    uint64_t counter;
     enum GrapeLogLevel level;
     Backend backends[GRAPE_LOGGER_MAX_BACKENDS];
     uint32_t backend_count;
@@ -22,6 +27,28 @@ typedef struct GrapeLoggerState {
 
 // não é thread-safe
 static GrapeLoggerState g_logger;
+
+/* ===== TIME ===== */
+#ifdef _WIN32
+static inline uint64_t grape_time_now_ns(void) {
+    static LARGE_INTEGER freq = {0};
+
+    if (freq.QuadPart == 0) {
+        QueryPerformanceFrequency(&freq);
+    }
+
+    LARGE_INTEGER now;
+    QueryPerformanceCounter(&now);
+
+    return (uint64_t)((now.QuadPart * 1000000000ULL) / freq.QuadPart);
+}
+#else
+static inline uint64_t grape_time_now_ns(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (uint64_t)ts.tv_sec * 1000000000ULL + (uint64_t)ts.tv_nsec;
+}
+#endif
 
 /* ===== DISPATCH ===== */
 void grape_log_dispatch(GrapeLogCategory category,
@@ -40,7 +67,8 @@ void grape_log_dispatch(GrapeLogCategory category,
         return;
 
     GrapeLogEvent event;
-    event.timestamp = (uint64_t)time(NULL);
+    event.timestamp = grape_time_now_ns();
+    event.sequence = g_logger.counter++;
     event.file = file;
     event.function = function;
     event.line = line;
@@ -65,6 +93,7 @@ void grape_log_init(enum GrapeLogLevel level, GrapeLogCategory category) {
     g_logger.level = level;
     g_logger.backend_count = 0;
     g_logger.category_mask = category;
+    g_logger.counter = 0;
 }
 
 /* ===== GET LEVEL ===== */

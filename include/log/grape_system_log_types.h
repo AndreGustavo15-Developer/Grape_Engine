@@ -17,7 +17,8 @@ enum GrapeLogLevel {
 typedef uint32_t GrapeLogCategory;
 
 typedef struct GrapeLogEvent {
-    uint64_t timestamp;   // Momento do log
+    uint64_t timestamp;   // tempo real (debug, profiling)
+    uint64_t sequence;    // ordem dos logs
     const char* file;     // Arquivo onde ocorreu
     const char* function; // Função onde ocorreu
     uint32_t line;        // Linha do código
