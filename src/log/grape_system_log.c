@@ -59,10 +59,6 @@ void grape_log_dispatch(GrapeLogCategory category,
     const char* fmt,
     ...) {
 
-    if (level < g_log_state.level)
-        return;
-    if (!(g_log_state.category_mask & category))
-        return;
     if (g_log_state.backend_count == 0)
         return;
 
@@ -81,6 +77,10 @@ void grape_log_dispatch(GrapeLogCategory category,
     va_end(args);
     event.user_data = NULL;
 
+    // WARNING:
+    // Event memory is only valid during backend write call.
+    // Backends must NOT store pointers to event fields.
+    // If persistence is required, data must be copied.
     for (uint32_t i = 0; i < g_log_state.backend_count; i++) {
         const Backend* backend = &g_log_state.backends[i];
         if (backend->write)

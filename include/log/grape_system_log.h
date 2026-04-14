@@ -6,6 +6,9 @@
 enum GrapeLogLevel grape_log_get_level(void);
 GrapeLogCategory grape_log_get_category_mask(void);
 
+// IMPORTANT:
+// grape_log_dispatch MUST NOT be called directly by user code.
+// Use GRAPE_LOG macros instead.
 void grape_log_dispatch(GrapeLogCategory category,
     enum GrapeLogLevel level,
     const char* file,
