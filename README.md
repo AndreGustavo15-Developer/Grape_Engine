@@ -1,5 +1,5 @@
 # 🍇 Grape Engine  
-*Uma game engine modular escrita em Zig + C, inspirada na metáfora de um cacho de uvas.*
+*A high-performance modular game engine written in Zig + C*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
 [![GitHub issues](https://img.shields.io/github/issues/AndreGustavo15-Developer/GrapeEngine.svg)](https://github.com/AndreGustavo15-Developer/GrapeEngine/issues)  
@@ -7,145 +7,210 @@
 
 ---
 
-## Sumário
+## 📚 Table of Contents
 
-- [🌱 Visão Geral](#-visão-geral)  
-- [🍇 Filosofia Central](#-filosofia-central)  
-- [🎯 Objetivo Inicial](#-objetivo-inicial)  
-- [🛠️ Estado Atual do Projeto](#-estado-atual-do-projeto)  
-- [📘 Documentação](#-documentação)  
-- [📂 Estrutura Inicial do Repositório (proposta)](#-estrutura-inicial-do-repositório-proposta)  
-- [🤝 Como Contribuir](#-como-contribuir)  
-- [📄 Licença](#-licença)  
-- [👤 Autor](#-autor)  
-- [🌐 Futuro: Fundação](#-futuro-fundação)  
+- [Overview](#overview)  
+- [Core Philosophy](#core-philosophy)  
+- [Goals](#goals)  
+- [Current State](#current-state)  
+- [First Implemented System](#first-implemented-system)  
+- [Repository Structure](#repository-structure-evolving)  
+- [Build](#build-in-progress)  
+- [Documentation](#documentation)  
+- [Contributing](#contributing)  
+- [Project Direction](#project-direction)  
+- [Future Vision](#future-vision)  
+- [License](#license)  
+- [Author](#author)  
 
----
+# 🍇 Grape Engine
 
-## 🌱 Visão Geral
+*A high-performance modular game engine written in Zig + C*
 
-A **Grape Engine** é uma engine de jogos em desenvolvimento, construída sobre o conceito de **modularidade orgânica**.  
-Inspirada na metáfora de um *cacho de uvas*, cada módulo da engine — chamado de “baga” — funciona como uma parte independente, capaz de ser adicionada, removida ou modificada sem afetar o núcleo central.
-
-O objetivo é criar uma engine que **cresce e evolui como um organismo**, permitindo que funcionalidades sejam cultivadas de maneira natural, flexível e escalável.
-
-> **Status:** Design em desenvolvimento.  
-> O TDD (Technical Design Document) está em constante evolução e o projeto ainda não possui uma arquitetura técnica final definida.
-
----
-
-## 🍇 Filosofia Central
-
-### 🌿 **Modularidade como cacho de uvas**
-- Cada módulo é uma *baga* independente.  
-- O núcleo funciona como o *pedúnculo* que conecta tudo.  
-- Novas funcionalidades podem surgir sem desequilibrar o todo.  
-- A engine deve amadurecer de forma orgânica, assim como um cacho real.
-
-Essa filosofia é o único elemento **100% definido e estável** neste estágio do projeto.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/AndreGustavo15-Developer/GrapeEngine.svg)](https://github.com/AndreGustavo15-Developer/GrapeEngine/issues)
+[![GitHub stars](https://img.shields.io/github/stars/AndreGustavo15-Developer/GrapeEngine.svg)](https://github.com/AndreGustavo15-Developer/GrapeEngine/stargazers)
 
 ---
 
-## 🎯 Objetivo Inicial
- 
-- Definir uma arquitetura clara e profundamente modular.  
-- Estabelecer um ecossistema que permita expansão natural e colaborativa.  
-- Evoluir a engine para um futuro **projeto AAA open-source**.
+## 🌱 Overview
+
+**Grape Engine** is a game engine in development, built around the concept of **organic modularity**.
+
+Inspired by a *grape cluster*, each module — called a “berry” — is an independent unit that can be added, removed, or replaced without breaking the core system.
+
+The goal is to create an engine that **grows and evolves like a living system**, enabling ideas to mature naturally into scalable and high-performance interactive experiences.
+
+> **Status:** Pre-architecture phase
+> The Technical Design Document (TDD) is actively evolving, and the final architecture is not yet fully defined.
 
 ---
 
-## 🛠️ Estado Atual do Projeto
+## 🍇 Core Philosophy
 
-O projeto está em fase **pré-arquitetura**, com foco em:
+### 🌿 Modular Architecture (Grape Model)
 
-- Estruturação da documentação  
-- Desenvolvimento do TDD  
-- Definição do núcleo conceitual  
-- Planejamento da modularidade  
-- Identidade e filosofia base da engine  
+* Each system is an independent **module (berry)**
+* The core acts as the **connector (stem)**
+* Systems evolve independently without breaking the whole
+* New features can be integrated organically
 
-Ainda **não existe**:  
-- ECS definido  
-- Pipeline gráfico definido  
-- Estrutura de código formal  
-- Editor  
-- Subsistemas (física, áudio etc.)  
-
-Esses elementos serão definidos posteriormente no TDD.
+This philosophy is the **foundation of the engine** and guides every technical decision.
 
 ---
 
-## 📘 Documentação
+## 🎯 Goals
 
-A documentação será mantida dentro de:
+* Define a deeply modular and extensible architecture
+* Achieve **extreme performance** in critical systems
+* Enable plugable systems (DLL/modules)
+* Grow into a **AAA-level open-source engine**
 
+---
+
+## 🛠️ Current State
+
+The project is currently focused on:
+
+* Documentation and TDD development
+* Core architectural decisions
+* Modular system design
+* Implementation of **early systems for validation**
+
+Not yet implemented:
+
+* ECS (Entity Component System)
+* Rendering pipeline
+* Editor
+* Physics / Audio subsystems
+
+These will be defined as the architecture matures.
+
+---
+
+## 🧪 First Implemented System
+
+### Logger
+
+The logging system is the first subsystem implemented to validate core design decisions.
+
+It is built with focus on:
+
+* ⚡ Performance (hot-path optimized)
+* 🧱 Modular backend system
+* 🔌 Decoupled architecture
+* 🔄 Future async support (ring buffer planned)
+
+Example:
+
+```c
+GRAPE_LOG_INFO(GRAPE_LOG_GENERAL, "System initialized");
 ```
-/docs
-/TDD
-```
 
-Atualmente, esta pasta contém (ou conterá) a versão inicial do TDD, que será expandida conforme o projeto evolui.
+This system acts as a **foundation experiment**, guiding architectural decisions for future modules.
 
 ---
 
-## 📂 Estrutura Inicial do Repositório (proposta)
+## 📂 Repository Structure (evolving)
 
 ```
 GrapeEngine/
 │
-├── src/
-│   ├── core/
-│   │   └── mod.zig
-│   ├── graphics/
-│   │   └── mod.zig
-│   └── ecs/
-│       └── mod.zig
+├── engine/
+│   ├── logger/
+│   ├── ecs/
+│   ├── renderer/
+│
+├── backends/
+│   └── logger_console/
 │
 ├── docs/
 │   └── tdd/
-│   └── TDD.md
 │
 ├── examples/
 │
-└── (README.md, LICENSE, build.zig, ...)
+├── tests/
+│
+└── (README.md, LICENSE, ...)
 ```
 
-> Esta estrutura pode mudar conforme o TDD evolui.
+> This structure will evolve alongside the architecture.
 
 ---
 
-## 🤝 Como Contribuir
+## ⚙️ Build (in progress)
 
-Neste estágio inicial, você pode ajudar com:
+The build system is currently under development and will be based on:
 
-- Abrindo issues para discutir ideias e design  
-- Propondo melhorias para a documentação e TDD  
-- Enviando sugestões para a organização do projeto  
+* Zig Build System
+* C integration for low-level systems
 
-Quando a arquitetura estiver definida, receberemos contribuições técnicas e código.
-
-**Por favor, antes de enviar PRs, abra uma issue para alinharmos a proposta!**
+More details will be added as the architecture stabilizes.
 
 ---
 
-## 📄 Licença
+## 📘 Documentation
 
-**MIT License** — permitindo uso educacional, pessoal e comercial sem restrições.
+Documentation is maintained in:
+
+```
+/docs
+/docs/tdd
+```
+
+The TDD defines the conceptual and architectural direction of the engine and evolves continuously.
+
+---
+
+## 🤝 Contributing
+
+At this stage, contributions are focused on **design and architecture**.
+
+You can help by:
+
+* Opening issues to discuss ideas
+* Reviewing architectural decisions
+* Suggesting improvements to systems (e.g. logger)
+* Proposing modular designs
+
+📄 See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines, coding standards, and commit conventions.
 
 ---
 
-## 👤 Autor
+## 🧭 Project Direction
 
-Criado e mantido por **[André Gustavo](https://github.com/AndreGustavo15-Developer)**, como projeto acadêmico com ambição de longo prazo para tornar-se um ecossistema open-source modular e orgânico.
+Current focus:
+
+* Define core architecture
+* Validate systems through implementation
+* Ensure performance-first design
+
+Avoid:
+
+* Large feature implementations without alignment
+* Adding external dependencies prematurely
 
 ---
 
-## 🌐 Futuro: Fundação
+## 🚀 Future Vision
 
-No futuro, a engine poderá ser mantida pela:
+The long-term goal is to evolve into a **fully modular AAA-grade open-source engine**, potentially maintained by a dedicated organization:
 
-**Grape Engine Foundation** *(nome preliminar)*
-
-Com foco em governança, roadmap, padronização e sustentabilidade do projeto.
+**Grape Engine Foundation** *(working name)*
 
 ---
+
+## 📄 License
+
+MIT License — free for personal, educational, and commercial use.
+
+---
+
+## 👤 Author
+
+Created and maintained by **André Gustavo**
+https://github.com/AndreGustavo15-Developer
+
+---
+
+🍇 *Growing ideas into systems.*
