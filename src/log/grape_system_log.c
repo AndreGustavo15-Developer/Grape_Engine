@@ -26,7 +26,7 @@ typedef struct GrapeLoggerState {
 } GrapeLoggerState;
 
 // não é thread-safe
-static GrapeLoggerState g_logger;
+static GrapeLoggerState g_log_state;
 
 /* ===== TIME ===== */
 #ifdef _WIN32
@@ -59,16 +59,16 @@ void grape_log_dispatch(GrapeLogCategory category,
     const char* fmt,
     ...) {
 
-    if (level < g_logger.level)
+    if (level < g_log_state.level)
         return;
-    if (!(g_logger.category_mask & category))
+    if (!(g_log_state.category_mask & category))
         return;
-    if (g_logger.backend_count == 0)
+    if (g_log_state.backend_count == 0)
         return;
 
     GrapeLogEvent event;
     event.timestamp = grape_time_now_ns();
-    event.sequence = g_logger.counter++;
+    event.sequence = g_log_state.counter++;
     event.file = file;
     event.function = function;
     event.line = line;
@@ -81,8 +81,8 @@ void grape_log_dispatch(GrapeLogCategory category,
     va_end(args);
     event.user_data = NULL;
 
-    for (uint32_t i = 0; i < g_logger.backend_count; i++) {
-        Backend* backend = &g_logger.backends[i];
+    for (uint32_t i = 0; i < g_log_state.backend_count; i++) {
+        const Backend* backend = &g_log_state.backends[i];
         if (backend->write)
             backend->write(&event, backend->user_data);
     }
@@ -90,27 +90,27 @@ void grape_log_dispatch(GrapeLogCategory category,
 
 /* ===== INIT ===== */
 void grape_log_init(enum GrapeLogLevel level, GrapeLogCategory category) {
-    g_logger.level = level;
-    g_logger.backend_count = 0;
-    g_logger.category_mask = category;
-    g_logger.counter = 0;
+    g_log_state.level = level;
+    g_log_state.backend_count = 0;
+    g_log_state.category_mask = category;
+    g_log_state.counter = 0;
 }
 
 /* ===== GET LEVEL ===== */
-enum GrapeLogLevel grape_log_get_level(void) { return g_logger.level; }
+enum GrapeLogLevel grape_log_get_level(void) { return g_log_state.level; }
 
 /* ===== GET CATEGORY ===== */
 GrapeLogCategory grape_log_get_category_mask(void) {
-    return g_logger.category_mask;
+    return g_log_state.category_mask;
 }
 
 /* ===== ADD BACKEND ===== */
 void grape_log_add_backend(void (*write)(const GrapeLogEvent*, void*),
     void* user_data) {
 
-    if (!write || g_logger.backend_count >= 16)
+    if (!write || g_log_state.backend_count >= GRAPE_LOGGER_MAX_BACKENDS)
         return;
 
     Backend backend = {.write = write, .user_data = user_data};
-    g_logger.backends[g_logger.backend_count++] = backend;
+    g_log_state.backends[g_log_state.backend_count++] = backend;
 }
