@@ -2,6 +2,8 @@
 #define GRAPE_SYSTEM_LOG_TYPES_H
 #include <stdint.h>
 
+#define GRAPE_LOG_MESSAGE_MAX 512
+
 /* ===== LEVEL ===== */
 enum GrapeLogLevel {
     GRAPE_LEVEL_DEBUG,
@@ -21,7 +23,7 @@ typedef struct GrapeLogEvent {
     uint32_t line;        // Linha do código
     uint32_t category;    // Categoria (bitmask)
     uint8_t level;        // Nível do log
-    const char* message;  // Ponteiro para a mensagem formatada
+    char message[GRAPE_LOG_MESSAGE_MAX];
     void* user_data;      // Opcional para backends avançados
 } GrapeLogEvent;
 

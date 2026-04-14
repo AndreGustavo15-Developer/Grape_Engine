@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define GRAPE_LOGGER_MAX_BACKENDS 16
+
 /* ===== BACKEND ===== */
 typedef struct Backend {
     void (*write)(const GrapeLogEvent* event, void* user_data);
@@ -13,7 +15,7 @@ typedef struct Backend {
 /* ===== LOGGER STATE ===== */
 typedef struct GrapeLoggerState {
     enum GrapeLogLevel level;
-    Backend backends[16];
+    Backend backends[GRAPE_LOGGER_MAX_BACKENDS];
     uint32_t backend_count;
     GrapeLogCategory category_mask;
 } GrapeLoggerState;
@@ -37,12 +39,6 @@ void grape_log_dispatch(GrapeLogCategory category,
     if (g_logger.backend_count == 0)
         return;
 
-    char buffer[512];
-    va_list args;
-    va_start(args, fmt);
-    vsnprintf(buffer, sizeof(buffer), fmt, args);
-    va_end(args);
-
     GrapeLogEvent event;
     event.timestamp = (uint64_t)time(NULL);
     event.file = file;
@@ -51,10 +47,10 @@ void grape_log_dispatch(GrapeLogCategory category,
     event.category = category;
     event.level = (uint8_t)level;
 
-    // o 'buffer' fica na stack, então,'messagem' aponta para o buffer.
-    // event.message é válido apenas durante a execução do backend
-    //  user allocator(arena / pool)
-    event.message = buffer;
+    va_list args;
+    va_start(args, fmt);
+    vsnprintf(event.message, GRAPE_LOG_MESSAGE_MAX, fmt, args);
+    va_end(args);
     event.user_data = NULL;
 
     for (uint32_t i = 0; i < g_logger.backend_count; i++) {
