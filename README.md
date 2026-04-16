@@ -9,19 +9,18 @@
 
 ## 📚 Table of Contents
 
-- [Overview](#overview)  
-- [Core Philosophy](#core-philosophy)  
-- [Goals](#goals)  
-- [Current State](#current-state)  
-- [First Implemented System](#first-implemented-system)  
-- [Repository Structure](#repository-structure-evolving)  
-- [Build](#build-in-progress)  
-- [Documentation](#documentation)  
-- [Contributing](#contributing)  
-- [Project Direction](#project-direction)  
-- [Future Vision](#future-vision)  
-- [License](#license)  
-- [Author](#author)  
+🌱 [Overview](#overview)  
+🍇 [Core Philosophy](#core-philosophy)  
+🎯 [Goals](#goals)  
+🛠️ [Current State](#current-state)  
+🧪 [First Implemented System](#first-implemented-system)  
+📂 [Repository Structure](#repository-structure-evolving)  
+⚙️ [Build](#build-in-progress)  
+📘 [Documentation](#documentation)  
+🤝 [Contributing](#contributing)  
+🧭 [Project Direction](#project-direction)   
+📄 [License](#license)  
+👤 [Author](#author)  
 
 
 ## 🌱 Overview
@@ -142,7 +141,14 @@ More details will be added as the architecture stabilizes.
 
 ## 📘 Documentation
 
-Documentation is maintained in:
+Documentation is organized into two layers:
+
+- **Wiki (recommended)**  
+  Detailed architecture, systems, and technical design:  
+  [Grape Engine Wiki](https://github.com/AndreGustavo15-Developer/GrapeEngine/wiki)
+
+- **Local Docs (/docs)**  
+  Internal and evolving documents, including the TDD: 
 
 ```
 /docs
