@@ -50,6 +50,13 @@ static inline uint64_t grape_time_now_ns(void) {
 }
 #endif
 
+/* =====  CHECK ===== */
+bool grape_log_should_emit(GrapeLogCategory category,
+    enum GrapeLogLevel level) {
+    return (category & g_log_state.category_mask) &&
+           (level >= g_log_state.level);
+}
+
 /* ===== DISPATCH ===== */
 void grape_log_dispatch(GrapeLogCategory category,
     enum GrapeLogLevel level,
