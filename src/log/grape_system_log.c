@@ -88,12 +88,20 @@ void grape_log_dispatch(GrapeLogCategory category,
     }
 }
 
-/* ===== INIT ===== */
+/* ===== API ===== */
 void grape_log_init(enum GrapeLogLevel level, GrapeLogCategory category) {
     g_log_state.level = level;
     g_log_state.backend_count = 0;
     g_log_state.category_mask = category;
     g_log_state.counter = 0;
+}
+
+void grape_log_set_level(enum GrapeLogLevel level) {
+    g_log_state.level = level;
+}
+
+void grape_log_set_category_mask(GrapeLogCategory category) {
+    g_log_state.category_mask = category;
 }
 
 /* ===== GET LEVEL ===== */

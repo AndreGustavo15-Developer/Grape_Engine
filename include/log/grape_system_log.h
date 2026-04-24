@@ -3,6 +3,10 @@
 #include "log/grape_system_log_types.h"
 
 /* ===== API ===== */
+void grape_log_init(enum GrapeLogLevel level, GrapeLogCategory category);
+void grape_log_set_level(enum GrapeLogLevel level);
+void grape_log_set_category_mask(GrapeLogCategory category);
+
 enum GrapeLogLevel grape_log_get_level(void);
 GrapeLogCategory grape_log_get_category_mask(void);
 
@@ -16,8 +20,6 @@ void grape_log_dispatch(GrapeLogCategory category,
     const char* function,
     const char* fmt,
     ...);
-
-void grape_log_init(enum GrapeLogLevel level, GrapeLogCategory category);
 
 /* ===== MACROS ===== */
 #define GRAPE_LOG(cat, level, fmt, ...)                                   \
