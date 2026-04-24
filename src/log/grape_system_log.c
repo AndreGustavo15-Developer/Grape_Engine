@@ -111,14 +111,6 @@ void grape_log_set_category_mask(GrapeLogCategory category) {
     g_log_state.category_mask = category;
 }
 
-/* ===== GET LEVEL ===== */
-enum GrapeLogLevel grape_log_get_level(void) { return g_log_state.level; }
-
-/* ===== GET CATEGORY ===== */
-GrapeLogCategory grape_log_get_category_mask(void) {
-    return g_log_state.category_mask;
-}
-
 /* ===== ADD BACKEND ===== */
 void grape_log_add_backend(void (*write)(const GrapeLogEvent*, void*),
     void* user_data) {
