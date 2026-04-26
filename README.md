@@ -1,115 +1,138 @@
-# 🍇 Grape Engine  
-*A high-performance modular game engine written in Zig + C*
+<!--
+<p align="center"> <img src="./assets/banner2.png" alt="Dynora Engine Banner" width="100%" /> </p>
+-->
+<h1 align="center">DYNORA ENGINE</h1>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-[![GitHub issues](https://img.shields.io/github/issues/AndreGustavo15-Developer/GrapeEngine.svg)](https://github.com/AndreGustavo15-Developer/GrapeEngine/issues)  
-[![GitHub stars](https://img.shields.io/github/stars/AndreGustavo15-Developer/GrapeEngine.svg)](https://github.com/AndreGustavo15-Developer/GrapeEngine/stargazers)
+<p align="center"> <strong>High-performance modular game engine written in Zig + C</strong> </p> 
 
----
+<p align="center"> <em>Grow modular worlds.</em> </p>
 
-## 📚 Table of Contents
-
-🌱 [Overview](#overview)  
-🍇 [Core Philosophy](#core-philosophy)  
-🎯 [Goals](#goals)  
-🛠️ [Current State](#current-state)  
-🧪 [First Implemented System](#first-implemented-system)  
-📂 [Repository Structure](#repository-structure-evolving)  
-⚙️ [Build](#build-in-progress)  
-📘 [Documentation](#documentation)  
-🤝 [Contributing](#contributing)  
-🧭 [Project Direction](#project-direction)   
-📄 [License](#license)  
-👤 [Author](#author)  
-
-
-## 🌱 Overview
-
-**Grape Engine** is a game engine in development, built around the concept of **organic modularity**.
-
-Inspired by a *grape cluster*, each module — called a “berry” — is an independent unit that can be added, removed, or replaced without breaking the core system.
-
-The goal is to create an engine that **grows and evolves like a living system**, enabling ideas to mature naturally into scalable and high-performance interactive experiences.
-
-> **Status:** Pre-architecture phase
-> The Technical Design Document (TDD) is actively evolving, and the final architecture is not yet fully defined.
+<p align="center"> 
+  <a href="LICENSE"> 
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" /> 
+  </a> 
+  <a href="https://github.com/AndreGustavo15-Developer/DynoraEngine/issues"> 
+    <img src="https://img.shields.io/github/issues/AndreGustavo15-Developer/DynoraEngine.svg" /> 
+  </a> 
+  <a href="https://github.com/AndreGustavo15-Developer/DynoraEngine/stargazers"> 
+    <img src="https://img.shields.io/github/stars/AndreGustavo15-Developer/DynoraEngine.svg" /> 
+  </a> 
+</p>
 
 ---
 
-## 🍇 Core Philosophy
+## Table of Contents
 
-Grape Engine is built around **organic modularity**, inspired by a grape cluster.
+[Overview](#overview)  
+[Core Philosophy](#core-philosophy)  
+[Goals](#goals)  
+[Current State](#current-state)  
+[First Implemented System](#first-implemented-system)  
+[Repository Structure](#repository-structure-evolving)  
+[Build](#build-in-progress)  
+[Documentation](#documentation)  
+[Contributing](#contributing)  
+[Project Direction](#project-direction)   
+[License](#license)  
+[Author](#author)  
 
-- Each system is an independent **module ("berry")**
-- The Core acts as the **connector ("stem")**
-- Systems evolve independently without breaking the whole
+---
+
+## Overview
+
+**Dynora Engine** is a modular game engine in development, **designed to grow, adapt, and scale as unified systems** — where independent modules work together while preserving performance and flexibility.
+
+Every subsystem is built as an independent module, allowing the engine to scale without sacrificing maintainability.
+
+Dynora’s mission is to provide a **high-performance, deeply modular architecture** where ideas can be assembled into scalable systems — empowering developers to build complex interactive worlds with precision and control.
+
+> **Current Status:** Pre-architecture phase  
+> The Technical Design Document (TDD) is evolving, and the engine architecture is being designed with long-term scalability in mind.
+
+---
+
+## Core Philosophy
+
+Dynora is built on the belief that a game engine should behave as an **adaptive architecture**:
+
+- Systems are **modular and replaceable**
+- The core coordinates independent subsystems
+- Features evolve without compromising the whole
+
+This philosophy drives every architectural decision.
 
 ### Principles
 
-- **Modular Architecture** — loosely coupled, replaceable systems  
-- **Adaptive Pipeline** — execution adapts to hardware and context  
-- **Hybrid ECS Model** — combines flexibility and performance  
+- **Modular Architecture** — loosely coupled and extensible systems  
+- **Adaptive Pipelines** — execution paths adapt to context and hardware  
+- **Hybrid ECS Design** — balancing flexibility and high performance  
+- **Scalable Foundations** — systems designed to evolve with the project  
 
-These principles guide all architectural decisions of the engine.
-
----
-
-## 🎯 Goals
-
-* Define a deeply modular and extensible architecture
-* Achieve **extreme performance** in critical systems
-* Enable pluggable systems (DLL/modules)
-* Grow into a **high-quality, production-ready open-source engine**
+Dynora is not just built for features — it is built for **system growth**.
 
 ---
 
-## 🛠️ Current State
+## Goals
+
+Dynora aims to:
+
+- Define a deeply modular and extensible architecture  
+- Achieve high performance in critical systems  
+- Support pluggable modules and backends (DLLs/modules) 
+- Grow into a production-ready open-source engine  
+- Give developers full architectural control  
+
+---
+
+## Current State
 
 The project is currently focused on:
 
-* Documentation and TDD development
-* Core architectural decisions
-* Modular system design
-* Implementation of **early systems for validation**
+- Technical Design Documentation (TDD)  
+- Core architecture definition  
+- Modular system validation  
+- Building foundational systems  
 
-Not yet implemented:
+Planned systems include:
 
-* ECS (Entity Component System)
-* Rendering pipeline
-* Editor
-* Physics / Audio subsystems
+- ECS (Entity Component System)  
+- Rendering Pipeline  
+- Editor  
+- Physics  
+- Audio  
+- Asset Pipeline  
 
-These will be defined as the architecture matures.
+These systems will be implemented as the architecture matures.
 
 ---
 
-## 🧪 First Implemented System
+## First Implemented System
 
 ### Logger
 
-The logging system is the first subsystem implemented to validate core design decisions.
+The logging system is the first subsystem implemented to validate the modular architecture.
 
-It is built with focus on:
+Current design goals:
 
-* ⚡ Performance (hot-path optimized)
-* 🧱 Modular backend system
-* 🔌 Decoupled architecture
-* 🔄 Future async support (ring buffer planned)
+- Hot-path optimized performance  
+- Modular backend support  
+- Decoupled interfaces  
+- Future asynchronous logging support (in development) 
 
 Example:
 
 ```c
-GRAPE_LOG_INFO(GRAPE_LOG_GENERAL, "System initialized");
+DYNORA_LOG_INFO(DYNORA_LOG_GENERAL, "System initialized");
 ```
 
-This system acts as a **foundation experiment**, guiding architectural decisions for future modules.
+The logger serves as the first architectural foundation for validating Dynora's modular design principles.
 
 ---
 
-## 📂 Repository Structure (evolving)
+## Repository Structure
 
-```
-GrapeEngine/
+```bash
+DynoraEngine/
 │
 ├── engine/
 │   ├── logger/
@@ -129,82 +152,86 @@ GrapeEngine/
 └── (README.md, LICENSE, ...)
 ```
 
-> This structure will evolve alongside the architecture.
+The structure will continue evolving alongside the architecture.
 
 ---
 
-## ⚙️ Build (in progress)
+## Build (in progress)
 
-The build system is currently under development and will be based on:
+The build pipeline is currently under development and is based on:
 
 * Zig Build System
 * C integration for low-level systems
 
-More details will be added as the architecture stabilizes.
+Build instructions will be expanded as the architecture stabilizes.
 
 ---
 
-## 📘 Documentation
+## Documentation
 
-Documentation is organized into two layers:
+Documentation is split into two layers:
 
-- **Wiki (recommended)**  
-  Detailed architecture, systems, and technical design:  
-  [Grape Engine Wiki](https://github.com/AndreGustavo15-Developer/GrapeEngine/wiki)
+### Wiki
 
-- **Local Docs (/docs)**  
-  Internal and evolving documents, including the TDD: 
+Architecture, systems, and technical design:
 
-```
+[Dynora Engine Wiki](https://github.com/AndreGustavo15-Developer/DynoraEngine/wiki)
+
+### Local Docs
+
+Internal documentation and technical design documents:
+
+```bash
 /docs
 /docs/tdd
 ```
 
-The TDD defines the conceptual and architectural direction of the engine and evolves continuously.
+The TDD defines the conceptual and technical direction of Dynora.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-At this stage, contributions are focused on **design and architecture**.
+At this stage, contributions are focused on **architecture and system design**.
 
-You can help by:
+Ways to contribute:
 
-* Opening issues to discuss ideas
-* Reviewing architectural decisions
-* Suggesting improvements to systems (e.g. logger)
-* Proposing modular designs
+* Discuss ideas through issues
+* Review architectural decisions
+* Suggest improvements to foundational systems
+* Propose modular subsystem designs
 
-📄 See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines, coding standards, and commit conventions.
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for contribution guidelines.
 
 ---
 
-## 🧭 Project Direction
+## Project Direction
 
-Current focus:
+### Current Focus
 
-* Define core architecture
-* Validate systems through implementation
+* Define the core architecture
+* Validate modular systems
 * Ensure performance-first design
 
-Avoid:
+### Avoid
 
-* Large feature implementations without alignment
-* Adding external dependencies prematurely
+* Premature feature expansion
+* External dependencies without architectural alignment
+
+Dynora prioritizes **architectural strength before feature breadth**.
 
 ---
 
-## 📄 License
+## License
 
 MIT License — free for personal, educational, and commercial use.
 
 ---
 
-## 👤 Author
+## Author
 
-Created and maintained by **André Gustavo**
-https://github.com/AndreGustavo15-Developer
+Created and maintained by **[André Gustavo](https://github.com/AndreGustavo15-Developer)**.
 
 ---
 
-🍇 *Growing ideas into systems.*
+<p align="center"> <strong>Assemble ideas. Build systems.</strong> </p>
