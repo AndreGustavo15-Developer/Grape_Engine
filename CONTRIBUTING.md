@@ -159,6 +159,7 @@ Prefer:
 * Avoid unnecessary macros
 * Prefer simple and predictable C
 * Keep systems understandable and maintainable
+* For detailed coding standards, see: **[Coding Style](docs/coding-style.md)**
 
 ---
 
@@ -222,5 +223,3 @@ When in doubt:
 <p align="center">
   <strong>Assemble ideas. Build systems.</strong>
 </p>
-
-```
