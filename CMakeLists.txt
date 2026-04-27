@@ -1,42 +1,51 @@
 cmake_minimum_required(VERSION 3.10)
-project(Grape_Engine C)
+project(DynoraEngine C)
 
 # ==== Padrão C ====
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# ==== Pastas ====
-set(GRAPE_ENGINE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(GRAPE_ENGINE_SRC_DIR     ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(GRAPE_ENGINE_INCLUDE_INTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+# ==== Paths ====
+#set(DYNORA_ENGINE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+#set(DYNORA_ENGINE_SRC_DIR     ${CMAKE_CURRENT_SOURCE_DIR}/src)
+#set(DYNORA_ENGINE_INCLUDE_INTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# ==== Fonte principal ====
-set(GRAPE_ENGINE_CORE
-    ${GRAPE_ENGINE_SRC_DIR}/log/grape_system_log.c
+set(DYNORA_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+
+set(DYNORA_ENGINE_DIR ${DYNORA_ROOT}/engine)
+set(DYNORA_BACKENDS_DIR ${DYNORA_ROOT}/engine/logger/backends)
+set(DYNORA_INCLUDE_DIR ${DYNORA_ROOT}/include)
+
+# ==== Sources ====
+# Core systems
+set(DYNORA_ENGINE_SOURCES
+    ${DYNORA_ENGINE_DIR}/logger/logger.c
 )
 
-# ==== Backends ====
-set(GRAPE_BACKENDS
-    ${GRAPE_ENGINE_SRC_DIR}/log/backends/grape_backend_console.c
+# Backends
+set(DYNORA_BACKEND_SOURCES
+    ${DYNORA_BACKENDS_DIR}/logger_console.c
 )
 
-# ==== Biblioteca ====
-add_library(Grape_Engine STATIC
-    ${GRAPE_ENGINE_CORE}
-    ${GRAPE_BACKENDS}
+# ==== Library ====
+add_library(DynoraEngine STATIC
+    ${DYNORA_ENGINE_SOURCES}
+    ${DYNORA_BACKEND_SOURCES}
 )
 
-target_include_directories(Grape_Engine
+# ==== Includes ====
+target_include_directories(DynoraEngine
     PUBLIC
-        ${GRAPE_ENGINE_INCLUDE_DIR}
+        ${DYNORA_INCLUDE_DIR}
     PRIVATE
-        ${GRAPE_ENGINE_SRC_DIR}
+        ${DYNORA_ENGINE_DIR}
+        ${DYNORA_BACKENDS_DIR}
 )
 
-# ==== Exemplos ====
+# ==== Examples ====
 option(BUILD_EXAMPLES "Build examples" ON)
 
 if(BUILD_EXAMPLES)
-    add_executable(grape_example examples/test.c)
-    target_link_libraries(grape_example PRIVATE Grape_Engine)
+    add_executable(dynora_example examples/hello_logger.c)
+    target_link_libraries(dynora_example PRIVATE DynoraEngine)
 endif()
