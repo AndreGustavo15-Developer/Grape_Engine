@@ -3,7 +3,7 @@
 -->
 <h1 align="center">DYNORA ENGINE</h1>
 
-<p align="center"> <strong>High-performance modular game engine written in Zig + C</strong> </p> 
+<p align="center"> <strong>Modular game engine focused on performance and scalability (Zig + C)</strong> </p> 
 
 <p align="center"> <em>Grow modular worlds.</em> </p>
 
@@ -21,23 +21,6 @@
 
 ---
 
-## Table of Contents
-
-[Overview](#overview)  
-[Core Philosophy](#core-philosophy)  
-[Goals](#goals)  
-[Current State](#current-state)  
-[First Implemented System](#first-implemented-system)  
-[Repository Structure](#repository-structure-evolving)  
-[Build](#build-in-progress)  
-[Documentation](#documentation)  
-[Contributing](#contributing)  
-[Project Direction](#project-direction)   
-[License](#license)  
-[Author](#author)  
-
----
-
 ## Overview
 
 **Dynora Engine** is a modular game engine in development, **designed to grow, adapt, and scale as unified systems** — where independent modules work together while preserving performance and flexibility.
@@ -45,9 +28,6 @@
 Every subsystem is built as an independent module, allowing the engine to scale without sacrificing maintainability.
 
 Dynora’s mission is to provide a **high-performance, deeply modular architecture** where ideas can be assembled into scalable systems — empowering developers to build complex interactive worlds with precision and control.
-
-> **Current Status:** Pre-architecture phase  
-> The Technical Design Document (TDD) is evolving, and the engine architecture is being designed with long-term scalability in mind.
 
 ---
 
@@ -86,46 +66,91 @@ Dynora aims to:
 
 ## Current State
 
-The project is currently focused on:
+> **Architecture Design Phase**
 
-- Technical Design Documentation (TDD)  
-- Core architecture definition  
-- Modular system validation  
-- Building foundational systems  
+Dynora is currently defining its **core architecture and system boundaries**.
 
-Planned systems include:
+- The Technical Design Document (TDD) is actively evolving
+- Core modules are being designed, not fully implemented
+- The logger system is the first subsystem used to validate architectural decisions
 
-- ECS (Entity Component System)  
-- Rendering Pipeline  
-- Editor  
-- Physics  
-- Audio  
-- Asset Pipeline  
-
-These systems will be implemented as the architecture matures.
+This means the project is early, but also the best moment to influence its foundations.
 
 ---
 
-## First Implemented System
+## Why Dynora Exists
 
-### Logger
+Many engines become difficult to evolve over time due to tightly coupled systems and unclear boundaries.
 
-The logging system is the first subsystem implemented to validate the modular architecture.
+Dynora is an attempt to explore a different approach:
 
-Current design goals:
+- Systems should be **independent but cooperative**
+- Architecture should **adapt**, not resist change
+- Performance should be considered **from the start**
+- Growth should not require rewriting the engine
 
-- Hot-path optimized performance  
-- Modular backend support  
-- Decoupled interfaces  
-- Future asynchronous logging support (in development) 
+This project is as much about **architecture exploration** as it is about building an engine.
+
+---
+
+## What Exists Today
+
+### Logger (first subsystem)
+
+The logging system is the first implemented module, designed to validate:
+
+- Module boundaries
+- Backend abstraction
+- Performance considerations in hot paths
+- Decoupled interfaces
 
 Example:
 
 ```c
 DYNORA_LOG_INFO(DYNORA_LOG_GENERAL, "System initialized");
 ```
+Planned evolution:
 
-The logger serves as the first architectural foundation for validating Dynora's modular design principles.
+- Asynchronous logging
+- Multiple backends
+- Filtering and formatting layers
+
+---
+
+## Architecture Direction
+
+Dynora is being designed around a few core principles:
+
+### Modular Systems
+
+Each subsystem should be independently replaceable and testable.
+
+### Clear Boundaries
+
+Modules communicate through well-defined interfaces.
+
+### Performance Awareness
+
+Critical paths are considered early in design, not as an afterthought.
+
+### Incremental Validation
+
+Systems are implemented early in minimal form to validate architectural decisions.
+
+---
+
+### Planned Systems
+
+These systems are planned but **not yet fully implemented**:
+
+- ECS (Entity Component System)
+- Rendering pipeline
+- Editor
+- Physics
+- Audio
+- Asset pipeline
+
+All systems will follow the same modular design philosophy.
 
 ---
 
@@ -156,26 +181,38 @@ The structure will continue evolving alongside the architecture.
 
 ---
 
-## Build (in progress)
+## Build
 
-The build pipeline is currently under development and is based on:
+> ⚠️ Temporary build system
 
-* Zig Build System
-* C integration for low-level systems
+Dynora currently uses **CMake** as a temporary build system while the architecture is being defined.
 
-Build instructions will be expanded as the architecture stabilizes.
+The long-term plan is to migrate to the **Zig build system**, but this will only happen after the core architecture stabilizes.
+
+### Requirements
+
+- C compiler (GCC, Clang, or MSVC)
+- CMake 3.x
+
+### Build Steps
+
+```bash
+git clone https://github.com/AndreGustavo15-Developer/DynoraEngine
+cd DynoraEngine
+
+mkdir build
+cd build
+
+cmake ..
+cmake --build .
+```
+### Output
+
+The current build produces early engine modules and test binaries used for architectural validation.
 
 ---
 
 ## Documentation
-
-Documentation is split into two layers:
-
-### Wiki
-
-Architecture, systems, and technical design:
-
-[Dynora Engine Wiki](https://github.com/AndreGustavo15-Developer/DynoraEngine/wiki)
 
 ### Local Docs
 
@@ -185,40 +222,68 @@ Internal documentation and technical design documents:
 /docs
 /docs/tdd
 ```
-
-The TDD defines the conceptual and technical direction of Dynora.
+The **TDD (Technical Design Document)** is the main reference for architectural decisions.
 
 ---
 
 ## Contributing
 
-At this stage, contributions are focused on **architecture and system design**.
+Dynora is in an early stage, so contributions are **especially valuable right now** — particularly in architecture and system design.
 
-Ways to contribute:
+## Ways to Contribute
+- Review and discuss architecture decisions
+- Suggest improvements to the logger system
+- Propose module interfaces and boundaries
+- Identify risks in modular design
+- Improve documentation and clarity
+- Add tests or small validation implementations
 
-* Discuss ideas through issues
-* Review architectural decisions
-* Suggest improvements to foundational systems
-* Propose modular subsystem designs
+## Before You Start
+
+For anything beyond small changes:
+
+> Open an issue first to discuss your idea.
+
+This helps keep the architecture consistent and avoids duplicated work.
+
+## Good First Contributions
+- Improve README or docs
+- Suggest API improvements for the logger
+- Add small test cases
+- Review TDD sections and raise questions
+
+### Current Needs
+
+Dynora is currently looking for contributors interested in:
+
+- Low-level systems design
+- Engine architecture
+- Performance-oriented C/Zig development
+- API design and modular interfaces
 
 See **[CONTRIBUTING.md](CONTRIBUTING.md)** for contribution guidelines.
 
 ---
 
 ## Project Direction
-
 ### Current Focus
+- Defining core architecture
+- Validating modular design through small systems
+- Building strong foundations
 
-* Define the core architecture
-* Validate modular systems
-* Ensure performance-first design
+### Intentionally Avoiding (for now)
+- Large feature expansion
+- Premature optimization without validation
+- External dependencies that constrain architecture
 
-### Avoid
+---
 
-* Premature feature expansion
-* External dependencies without architectural alignment
-
-Dynora prioritizes **architectural strength before feature breadth**.
+## Roadmap (Conceptual)
+- Define core architecture
+- Stabilize logger module
+- Implement initial ECS prototype
+- Define rendering abstraction
+- Expand documentation and examples
 
 ---
 
